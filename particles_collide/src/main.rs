@@ -11,7 +11,7 @@ use crate::particle_system::ParticleSystem;
 const NUM_PARTICLES: usize = 100;
 const BOUNDS_MIN: Vec2 = Vec2{ x:  0.0, y:  0.0};
 const BOUNDS_MAX: Vec2 = Vec2{ x: 10.0, y: 10.0};
-const MAX_SPEED: f32 = 2.0;
+const MAX_SPEED: f32 = 0.5;
 
 const RUN_TIME_MS: u64 = 10_000;
 
@@ -57,6 +57,7 @@ fn main()
 
     while Instant::now() < end_at {
         particle_sys.move_particles_threaded(MAX_SPEED, &mut pool);
+        particle_sys.test_collisions(&mut pool);
 
         iterations += 1;
     }

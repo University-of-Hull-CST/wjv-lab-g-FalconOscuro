@@ -17,12 +17,16 @@ impl Vec2 {
         return Self { x, y }
     }
 
-    pub fn magnitude(&self) -> f32 {
-        return f32::powf(self.x.powf(2.0) + self.y.powf(2.0), 0.5);
+    pub fn length_squared(&self) -> f32 {
+        return self.x.powi(2) + self.y.powi(2);
+    }
+
+    pub fn length(&self) -> f32 {
+        return self.length_squared().sqrt();
     }
 
     pub fn normalized(&self) -> Vec2 {
-        return *self / self.magnitude();
+        return *self / self.length();
     }
     
     pub fn clamp(&self, min : Vec2, max : Vec2) -> Vec2 {
